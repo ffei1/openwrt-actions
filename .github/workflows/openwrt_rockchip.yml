@@ -73,20 +73,13 @@ jobs:
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 || make -j1 V=s
         echo "status=success" >> $GITHUB_OUTPUT
-              
-    - name: Set the current date
-      id: date
-      run: |
-        cd openwrt
-        grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
-        [ -s DEVICE_NAME ] && echo "DEVICE_NAME=$(cat DEVICE_NAME)" >> $GITHUB_ENV
-        echo "date1=$(date +'%Y.%m.%d')" >> $GITHUB_ENV
-        echo "date2=$(date "+%Y年%m月%d日")" >> $GITHUB_ENV
 
     - name: Organize and Rename Files
       id: organize
       if: ${{ env.UPLOAD_FIRMWARE == 'true' && !cancelled() }}
       run: |
+        echo "date1=$(date +'%Y.%m.%d')" >> $GITHUB_ENV
+        echo "date2=$(date "+%Y年%m月%d日")" >> $GITHUB_ENV
         mkdir -p firmware
         find openwrt/bin/targets/*/*/ -maxdepth 1 \
         -name "*.tar.gz" \
