@@ -81,10 +81,7 @@ jobs:
         echo "date1=$(date +'%Y.%m.%d')" >> $GITHUB_ENV
         echo "date2=$(date "+%Y年%m月%d日")" >> $GITHUB_ENV
         mkdir -p firmware
-        find openwrt/bin/targets/*/*/ -maxdepth 1 \
-        -name "*.tar.gz" \
-        -exec mv -f {} ./firmware/ \;
-        cp openwrt/.config ./firmware/${{ env.date1 }}_${{ env.OPENWRT_NAME }}.config
+        cp -r openwrt/bin/targets/*/*/*.tar.gz ./firmware/
         cd firmware
         rename "s/^/${{ env.date1 }}_/" *.tar.gz
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
