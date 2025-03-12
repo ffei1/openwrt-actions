@@ -82,7 +82,8 @@ jobs:
       run: |
         cd openwrt/bin/targets/rockchip/armv8
         rm -rf packages
-        rename "s/^/${{ env.date1 }}_/" *-squashfs-sysupgrade.img.gz
+        rename -v "s/^/${{ env.date1 }}_/" *-squashfs-sysupgrade.img.gz
+        ls -l
         
     - name: Upload the firmware to github
       uses: actions/upload-artifact@main
