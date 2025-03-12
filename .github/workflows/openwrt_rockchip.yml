@@ -80,10 +80,8 @@ jobs:
       run: |
         echo "date1=$(date +'%Y.%m.%d')" >> $GITHUB_ENV
         echo "date2=$(date "+%Y年%m月%d日")" >> $GITHUB_ENV
-        mkdir -p firmware
-        cp -r openwrt/bin/targets/*/*/*.tar.gz ./firmware/
-        cd firmware
-        rename "s/^/${{ env.date1 }}_/" *.tar.gz
+        cd openwrt/bin/targets/rockchip/armv8
+        rename "s/^/${{ env.date1 }}_/" *-squashfs-sysupgrade.img.gz
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
         
