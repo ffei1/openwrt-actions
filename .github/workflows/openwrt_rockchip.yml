@@ -81,16 +81,15 @@ jobs:
         echo "date1=$(date +'%Y.%m.%d')" >> $GITHUB_ENV
         echo "date2=$(date "+%Y年%m月%d日")" >> $GITHUB_ENV
         cd openwrt/bin/targets/rockchip/armv8
+        rm -rf packages
         rename "s/^/${{ env.date1 }}_/" *-squashfs-sysupgrade.img.gz
-        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-        echo "status=success" >> $GITHUB_OUTPUT
         
     - name: Upload the firmware to github
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: ${{ env.date1 }}_${{ env.OPENWRT_NAME }}_${{ env.DEVICE_NAME }}
-        path: ${{ env.FIRMWARE }}
+        name: ${{ env.date1 }}_${{ env.OPENWRT_NAME }}
+        path: openwrt/bin/targets/rockchip/armv8/*
 
     - name: Generate release tags
       id: tag
