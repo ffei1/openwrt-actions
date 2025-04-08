@@ -61,6 +61,7 @@ jobs:
       id: package
       run: |
         cd openwrt
+        git clone --depth=1 https://github.com/linkease/istore ./package/istore
         make defconfig
         make download -j$(nproc)
         find dl -size -1024c -exec ls -l {} \;
