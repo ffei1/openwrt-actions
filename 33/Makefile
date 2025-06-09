@@ -160,7 +160,7 @@ define U-Boot/rockpro64-rk3399
     pine64_rockpro64
 endef
 
-define U-Boot/fine3399-rk3399
+define U-Boot/fine-3399-rk3399
   $(U-Boot/rk3399/Default)
   NAME:=Fine 3399
   BUILD_DEVICES:= \
