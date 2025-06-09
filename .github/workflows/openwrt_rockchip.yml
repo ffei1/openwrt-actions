@@ -47,7 +47,6 @@ jobs:
 
     - name: Load custom configuration
       run: |
-      [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         chmod +x $DIY_P2_SH
         cd openwrt
         git checkout v24.10.0
@@ -56,6 +55,7 @@ jobs:
     - name: Update & install feeds
       working-directory: ./openwrt
       run: |
+        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         
