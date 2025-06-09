@@ -43,12 +43,12 @@ jobs:
     - name: Download firmware source code
       run: |
         git clone $REPO_URL -b $REPO_BRANCH openwrt
-        git checkout v24.10.0
 
     - name: Load custom configuration
       run: |
         chmod +x $DIY_P2_SH
         cd openwrt
+        git checkout v24.10.0
         $GITHUB_WORKSPACE/$DIY_P2_SH
         
     - name: Update & install feeds
