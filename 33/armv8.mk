@@ -148,8 +148,7 @@ define Device/rumu3f_fine-3399
   DEVICE_VENDOR := RUMU3F
   DEVICE_MODEL := FINE 3399
   SOC := rk3399
-  UBOOT_DEVICE_NAME := fine3399-rk3399
-  IMAGE/sysupgrade.img.gz := boot-common | boot-script | pine64-img | gzip | append-metadata
+  BOOT_FLOW := pine64-bin
   DEVICE_PACKAGES := brcmfmac-firmware-43430a0-sdio brcmfmac-nvram-43430-sdio \
 	kmod-brcmfmac kmod-gpio-button-hotplug kmod-usb-net-rtl8152 wpad
 endef
