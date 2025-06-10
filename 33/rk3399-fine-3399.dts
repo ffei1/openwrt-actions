@@ -11,7 +11,7 @@
 	model = "RUMU3F Fine3399";
 	compatible = "rumu3f,fine-3399", "rockchip,rk3399";
 
-	aliases {
+        aliases {
 		ethernet0 = &gmac;
 		mmc0 = &sdio0;
 		mmc1 = &sdmmc;
@@ -29,7 +29,7 @@
 		#clock-cells = <0>;
 	};
 
-	dc_12v: dc-12v {
+	dc_12v: regulator-dc-12v {
 		compatible = "regulator-fixed";
 		regulator-name = "dc_12v";
 		regulator-always-on;
@@ -44,11 +44,11 @@
 		clock-names = "ext_clock";
 		pinctrl-names = "default";
 		pinctrl-0 = <&wifi_reg_on_h>;
-		reset-gpios = <&gpio0 RK_PB2 GPIO_ACTIVE_LOW>;
+		reset-gpios = <&gpio0 RK_PB2 GPIO_ACTIVE_LOW>; // bsp
 	};
 
 	/* switched by pmic_sleep */
-	vcc1v8_s3: vcca1v8_s3: vcc1v8-s3 {
+	vcc1v8_s3: vcca1v8_s3: regulator-vcc1v8-s3 {
 		compatible = "regulator-fixed";
 		regulator-name = "vcc1v8_s3";
 		regulator-always-on;
@@ -58,7 +58,7 @@
 		vin-supply = <&vcc_1v8>;
 	};
 
-	vcc3v3_sys: vcc3v3-sys {
+	vcc3v3_sys: vcc3v3_pcie: vcc3v3_bl: regulator-vcc3v3-sys { // sch
 		compatible = "regulator-fixed";
 		regulator-name = "vcc3v3_sys";
 		regulator-always-on;
@@ -68,9 +68,9 @@
 		vin-supply = <&dc_12v>;
 	};
 
-	vcc_sys: vcc-sys {
+	vcc5v0_sys: regulator-vcc5v0-sys { // sch
 		compatible = "regulator-fixed";
-		regulator-name = "vcc_sys";
+		regulator-name = "vcc5v0_sys";
 		regulator-always-on;
 		regulator-boot-on;
 		regulator-min-microvolt = <5000000>;
@@ -78,7 +78,7 @@
 		vin-supply = <&dc_12v>;
 	};
 
-	vcc_phy: vcc-phy-regulator {
+	vcc_phy: regulator-vcc-phy {
 		compatible = "regulator-fixed";
 		enable-active-high;
 		gpio = <&gpio0 RK_PB4 GPIO_ACTIVE_HIGH>;
@@ -97,17 +97,17 @@
 		regulator-boot-on;
 		regulator-min-microvolt = <800000>;
 		regulator-max-microvolt = <1400000>;
-		vin-supply = <&vcc_sys>;
+		vin-supply = <&vcc5v0_sys>;
 	};
 
-	gpio-leds {
+	leds: gpio-leds {
 		compatible = "gpio-leds";
 		pinctrl-names = "default";
 		pinctrl-0 = <&user_led2>;
 
 		user_led2 {
 			label = "blue:work_led";
-			gpios = <&gpio2 RK_PD3 GPIO_ACTIVE_LOW>;
+			gpios = <&gpio2 RK_PD3 GPIO_ACTIVE_LOW>; // sch
 			linux,default-trigger = "heartbeat";
 		};
 	};
@@ -120,18 +120,18 @@
 
 		key-power {
 			debounce-interval = <100>;
-			gpios = <&gpio0 RK_PA5 GPIO_ACTIVE_LOW>;
+			gpios = <&gpio0 RK_PA5 GPIO_ACTIVE_LOW>; // bsp
 			label = "GPIO Key Power";
 			linux,code = <KEY_POWER>;
 			wakeup-source;
 		};
 	};
 
-	fan: pwm-fan {
+	fan0: pwm-fan {
 		compatible = "pwm-fan";
-		cooling-levels = <0 30 60 90 120 160>;
+		cooling-levels = <0 50 100 150 200 255>;
 		#cooling-cells = <2>;
-		fan-supply = <&vcc_sys>;
+		fan-supply = <&vcc5v0_sys>;
 		pwms = <&pwm1 0 40000 0>;
 	};
 
@@ -142,6 +142,7 @@
 		pwms = <&pwm0 0 1000000 0>;
 	};
 
+	// pwm3
 	ir-receiver {
 		compatible = "gpio-ir-receiver";
 		gpios = <&gpio0 RK_PA6 GPIO_ACTIVE_LOW>;
@@ -158,10 +159,11 @@
 
 		recovery {
 			label = "Recovery";
-			linux,code = <KEY_VENDOR>;
+			linux,code = <KEY_VENDOR>; // ??
 			press-threshold-microvolt = <0>;
 		};
 	};
+
 };
 
 &cpu_l0 {
@@ -196,7 +198,7 @@
 &cpu_thermal {
 	trips {
 		cpu_warm: cpu_warm {
-			temperature = <50000>;
+			temperature = <55000>;
 			hysteresis = <2000>;
 			type = "active";
 		};
@@ -211,12 +213,12 @@
 	cooling-maps {
 		map2 {
 			trip = <&cpu_warm>;
-			cooling-device = <&fan THERMAL_NO_LIMIT 1>;
+			cooling-device = <&fan0 THERMAL_NO_LIMIT 3>;
 		};
 
 		map3 {
 			trip = <&cpu_hot>;
-			cooling-device = <&fan 4 THERMAL_NO_LIMIT>;
+			cooling-device = <&fan0 4 THERMAL_NO_LIMIT>;
 		};
 	};
 };
@@ -233,7 +235,7 @@
 	phy-mode = "rgmii";
 	pinctrl-names = "default";
 	pinctrl-0 = <&rgmii_pins>;
-	snps,reset-gpio = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
+	snps,reset-gpio = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>; // bsp
 	snps,reset-active-low;
 	snps,reset-delays-us = <0 10000 50000>;
 	tx_delay = <0x28>;
@@ -267,7 +269,7 @@
 		clock-output-names = "xin32k", "rk808-clkout2";
 		pinctrl-names = "default";
 		pinctrl-0 = <&pmic_int_l &pmic_dvs2>;
-		rockchip,system-power-controller;
+		system-power-controller;
 		wakeup-source;
 
 		vcc1-supply = <&vcc3v3_sys>;
@@ -453,7 +455,7 @@
 		regulator-ramp-delay = <1000>;
 		regulator-always-on;
 		regulator-boot-on;
-		vin-supply = <&vcc_sys>;
+		vin-supply = <&vcc5v0_sys>;
 
 		regulator-state-mem {
 			regulator-off-in-suspend;
@@ -472,7 +474,7 @@
 		regulator-ramp-delay = <1000>;
 		regulator-always-on;
 		regulator-boot-on;
-		vin-supply = <&vcc_sys>;
+		vin-supply = <&vcc5v0_sys>;
 
 		regulator-state-mem {
 			regulator-off-in-suspend;
@@ -480,18 +482,16 @@
 	};
 };
 
+// Used for HDMI
 &i2c3 {
 	i2c-scl-rising-time-ns = <450>;
 	i2c-scl-falling-time-ns = <15>;
 	status = "okay";
 };
 
+// HDMI sound
 &i2s2 {
 	#sound-dai-cells = <0>;
-	status = "okay";
-};
-
-&iep_mmu {
 	status = "okay";
 };
 
@@ -514,7 +514,7 @@
 };
 
 &pcie0 {
-	ep-gpios = <&gpio4 RK_PD3 GPIO_ACTIVE_HIGH>;
+	ep-gpios = <&gpio4 RK_PD3 GPIO_ACTIVE_HIGH>; // sch
 	max-link-speed = <2>;
 	num-lanes = <2>;
 	pinctrl-names = "default";
@@ -537,7 +537,7 @@
 		};
 
 		pmic_dvs2: pmic-dvs2 {
-			rockchip,pins = <1 RK_PC2 RK_FUNC_GPIO &pcfg_pull_down>;
+			rockchip,pins = <1 RK_PC2 RK_FUNC_GPIO &pcfg_pull_down>; // bsp
 		};
 	};
 
@@ -575,7 +575,8 @@
 
 	leds {
 		user_led2: user_led2 {
-			rockchip,pins = <2 RK_PD3 RK_FUNC_GPIO &pcfg_pull_none>;
+			rockchip,pins =
+				<2 RK_PD3 RK_FUNC_GPIO &pcfg_pull_none>;
 		};
 	};
 
@@ -587,15 +588,18 @@
 
 	buttons {
 		power_key: power_key {
-			rockchip,pins = <0 RK_PA5 RK_FUNC_GPIO &pcfg_pull_up>;
+			rockchip,pins = 
+				<0 RK_PA5 RK_FUNC_GPIO &pcfg_pull_up>;
 		};
 	};
 };
 
+// LCD
 &pwm0 {
 	status = "okay";
 };
 
+// FAN
 &pwm1 {
 	status = "okay";
 };
@@ -631,7 +635,7 @@
 		reg = <1>;
 		compatible = "brcm,bcm4329-fmac";
 		interrupt-parent = <&gpio0>;
-		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
+		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_HIGH>;
 		interrupt-names = "host-wake";
 		brcm,drive-strength = <5>;
 		pinctrl-names = "default";
@@ -642,7 +646,7 @@
 &sdmmc {
 	bus-width = <4>;
 	cap-sd-highspeed;
-	cd-gpios = <&gpio0 RK_PA7 GPIO_ACTIVE_LOW>;
+	cd-gpios = <&gpio0 RK_PA7 GPIO_ACTIVE_LOW>; // bsp
 	clock-frequency = <150000000>;
 	disable-wp;
 	sd-uhs-sdr104;
@@ -661,12 +665,23 @@
 	non-removable;
 	status = "okay";
 };
+/*
+&spi1 {
+	status = "okay";
+
+	norflash: flash@0 {
+		compatible = "jedec,spi-nor";
+		reg = <0>;
+		spi-max-frequency = <50000000>;
+	};
+};
+*/
 
 &spi2 {
 	status = "okay";
 
 	panel@0 {
-		compatible = "jianda,jd-t18003-t01";
+		compatible = "sitronix,st7735s", "sitronix,st7735r", "sitronix,st7789v", "jianda,jd-t18003-t01";
 		reg = <0>;
 		rgb;
 		width = <80>;
@@ -745,6 +760,7 @@
 	};
 };
 
+// Debug TTL
 &uart2 {
 	status = "okay";
 };
@@ -796,5 +812,9 @@
 };
 
 &vopl_mmu {
+	status = "okay";
+};
+
+&iep_mmu {
 	status = "okay";
 };
