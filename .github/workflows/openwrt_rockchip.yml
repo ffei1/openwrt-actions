@@ -100,7 +100,7 @@ jobs:
       run: |
         echo "release_tag=${{ env.date2 }}" >> $GITHUB_OUTPUT
         touch release.txt
-        echo "自动发布固件" >> release.txt
+        echo "fine3399固件192.168.11.1" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
         
     - name: Publish to release
