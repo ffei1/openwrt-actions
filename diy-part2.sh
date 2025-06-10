@@ -12,6 +12,8 @@
 
 echo "开始 DIY2 配置……"
 echo "========================="
+# Modify default IP
+ sed -i 's/192.168.1.1/192.168.11.1/g' package/base-files/files/bin/config_generate
 # 删除软件包
  rm target/linux/rockchip/image/armv8.mk
  rm target/linux/rockchip/armv8/base-files/etc/board.d/02_network
