@@ -148,9 +148,8 @@ define Device/rumu3f_fine-3399
   DEVICE_VENDOR := RUMU3F
   DEVICE_MODEL := FINE 3399
   SOC := rk3399
-  BOOT_FLOW := pine64-bin
-  DEVICE_PACKAGES := brcmfmac-firmware-43430a0-sdio brcmfmac-nvram-43430-sdio \
-	kmod-brcmfmac kmod-gpio-button-hotplug kmod-usb-net-rtl8152 wpad
+  BOOT_FLOW := pine64-img
+  DEVICE_PACKAGES := kmod-brcmfmac kmod-gpio-button-hotplug kmod-usb-net-rtl8152 wpad	
 endef
 TARGET_DEVICES += rumu3f_fine-3399
 
