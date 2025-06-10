@@ -19,7 +19,7 @@ echo "========================="
  rm package/boot/uboot-rockchip/Makefile
  rm package/boot/uboot-rockchip/patches/900-arm-add-dts-files.patch
  rm target/linux/rockchip/patches-6.6/900-arm64-boot-add-dts-files.patch
- wget -P package/boot/uboot-rockchip/src/arch/arm/dts https://raw.githubusercontent.com/ffei1/openwrt-actions/main/33/rk3399-fine-3399.dts
+ wget -P package/boot/uboot-rockchip/src/arch/arm/dts https://raw.githubusercontent.com/ffei1/openwrt-actions/main/uboot/rk3399-fine-3399.dts
  wget -P target/linux/rockchip/files/arch/arm64/boot/dts/rockchip https://raw.githubusercontent.com/ffei1/openwrt-actions/main/33/rk3399-fine-3399.dts
  wget -P package/boot/uboot-rockchip/src/arch/arm/dts https://raw.githubusercontent.com/ffei1/openwrt-actions/main/33/rk3399-fine-3399-u-boot.dtsi
  wget -P target/linux/rockchip/image https://raw.githubusercontent.com/ffei1/openwrt-actions/main/33/armv8.mk
