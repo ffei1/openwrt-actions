@@ -114,7 +114,8 @@ endef
 define U-Boot/rk3399/Default
   BUILD_SUBTARGET:=armv8
   DEPENDS:=+PACKAGE_u-boot-$(1):trusted-firmware-a-rk3399
-  ATF:=rk3399_bl31.elf
+  ATF:=$(RK3399_ATF)
+
 endef
 
 define U-Boot/guangmiao-g4c-rk3399
@@ -166,7 +167,6 @@ define U-Boot/fine-3399-rk3399
   BUILD_DEVICES:= \
     rumu3f_fine-3399
 endef
-
 
 # RK3566 boards
 
