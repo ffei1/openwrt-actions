@@ -1768,7 +1768,7 @@ CONFIG_NETJSON_MONITORING_IWINFO=y
 # CONFIG_PACKAGE_trusted-firmware-a-rk3308 is not set
 # CONFIG_PACKAGE_trusted-firmware-a-rk3308-rock-pi-s is not set
 # CONFIG_PACKAGE_trusted-firmware-a-rk3328 is not set
-CONFIG_PACKAGE_trusted-firmware-a-rk3399=y
+# CONFIG_PACKAGE_trusted-firmware-a-rk3399 is not set
 # CONFIG_PACKAGE_trusted-firmware-a-rk3566 is not set
 # CONFIG_PACKAGE_trusted-firmware-a-rk3568 is not set
 # CONFIG_PACKAGE_trusted-firmware-a-rk3568-e25 is not set
