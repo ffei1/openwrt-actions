@@ -115,7 +115,6 @@ define U-Boot/rk3399/Default
   BUILD_SUBTARGET:=armv8
   DEPENDS:=+PACKAGE_u-boot-$(1):trusted-firmware-a-rk3399
   ATF:=$(RK3399_ATF)
-  TPL:=$(RK3399_TPL)
 
 endef
 
