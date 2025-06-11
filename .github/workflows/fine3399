@@ -1,5 +1,5 @@
 
-name: openwrt_rockchip
+name: fine3399
 
 on:
   workflow_dispatch:
