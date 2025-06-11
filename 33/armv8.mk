@@ -50,8 +50,7 @@ define Device/cyber_cyber3588-aib
   SOC := rk3588
   BOOT_FLOW := pine64-img
   DEVICE_PACKAGES := kmod-ata-ahci-dwc kmod-r8125 kmod-mt7921e wpad-openssl \
-	kmod-hwmon-pwmfan kmod-usb-net-cdc-mbim kmod-usb-net-qmi-wwan \
-	kmod-usb-serial-option uqmi
+        kmod-usb-net-cdc-mbim kmod-usb-net-qmi-wwan kmod-usb-serial-option uqmi
 endef
 TARGET_DEVICES += cyber_cyber3588-aib
 
@@ -140,7 +139,7 @@ define Device/friendlyarm_nanopi-r3s
   DEVICE_MODEL := NanoPi R3S
   SOC := rk3566
   BOOT_FLOW := pine64-img
-  DEVICE_PACKAGES := kmod-r8169
+  DEVICE_PACKAGES := kmod-r8168
 endef
 TARGET_DEVICES += friendlyarm_nanopi-r3s
 
@@ -148,8 +147,7 @@ define Device/rumu3f_fine-3399
   DEVICE_VENDOR := RUMU3F
   DEVICE_MODEL := FINE 3399
   SOC := rk3399
-  UBOOT_DEVICE_NAME := fine-3399-rk3399
-  IMAGE/sysupgrade.img.gz := boot-common | boot-script | pine64-img | gzip | append-metadata
+  BOOT_FLOW := pine64-img
   DEVICE_PACKAGES := kmod-brcmfmac kmod-gpio-button-hotplug kmod-usb-net-rtl8152 wpad	
 endef
 TARGET_DEVICES += rumu3f_fine-3399
@@ -159,7 +157,7 @@ define Device/friendlyarm_nanopi-r4s
   DEVICE_MODEL := NanoPi R4S
   SOC := rk3399
   BOOT_FLOW := pine64-bin
-  DEVICE_PACKAGES := kmod-r8169
+  DEVICE_PACKAGES := kmod-r8168
 endef
 TARGET_DEVICES += friendlyarm_nanopi-r4s
 
@@ -168,7 +166,7 @@ define Device/friendlyarm_nanopi-r4se
   DEVICE_MODEL := NanoPi R4SE
   SOC := rk3399
   BOOT_FLOW := pine64-bin
-  DEVICE_PACKAGES := kmod-r8169
+  DEVICE_PACKAGES := kmod-r8168
 endef
 TARGET_DEVICES += friendlyarm_nanopi-r4se
 
@@ -178,7 +176,7 @@ define Device/friendlyarm_nanopi-r4s-enterprise
   SOC := rk3399
   UBOOT_DEVICE_NAME := nanopi-r4s-rk3399
   BOOT_FLOW := pine64-bin
-  DEVICE_PACKAGES := kmod-r8169
+  DEVICE_PACKAGES := kmod-r8168
 endef
 TARGET_DEVICES += friendlyarm_nanopi-r4s-enterprise
 
@@ -223,7 +221,7 @@ define Device/huake_guangmiao-g4c
   DEVICE_MODEL := GuangMiao G4C
   SOC := rk3399
   BOOT_FLOW := pine64-bin
-  DEVICE_PACKAGES := kmod-r8169
+  DEVICE_PACKAGES := kmod-r8168
 endef
 TARGET_DEVICES += huake_guangmiao-g4c
 
@@ -281,7 +279,6 @@ define Device/pine64_rockpro64
   DEVICE_MODEL := RockPro64
   SOC := rk3399
   BOOT_FLOW := pine64-bin
-  SUPPORTED_DEVICES += pine64,rockpro64-v2.1
 endef
 TARGET_DEVICES += pine64_rockpro64
 
