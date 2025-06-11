@@ -166,6 +166,8 @@ define U-Boot/fine-3399-rk3399
   NAME:=Fine 3399
   BUILD_DEVICES:= \
     rumu3f_fine-3399
+  ATF:=$(RK3399_ATF)
+  USE_RKBIN:=1
 endef
 
 # RK3566 boards
