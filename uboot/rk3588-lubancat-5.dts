@@ -185,14 +185,6 @@
 	};
 };
 
-&i2s5_8ch {
-	status = "okay";
-};
-
-&i2s6_8ch {
-	status = "okay";
-};
-
 &cpu_b0 {
 	cpu-supply = <&vdd_cpu_big0_s0>;
 };
@@ -792,11 +784,6 @@
 	status = "okay";
 };
 
-/* this is a watchdog */
-&wdt {
-	status = "okay";
-};
-
 &gmac0 {
 	/* Use rgmii-rxid mode to disable rx delay inside Soc */
 	phy-mode = "rgmii-rxid";
@@ -1040,10 +1027,6 @@
 };
 
 &usb_host1_ohci {
-	status = "okay";
-};
-
-&i2s7_8ch{
 	status = "okay";
 };
 
