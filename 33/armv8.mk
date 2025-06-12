@@ -54,6 +54,15 @@ define Device/cyber_cyber3588-aib
 endef
 TARGET_DEVICES += cyber_cyber3588-aib
 
+define Device/embedfire_lubancat-5
+  DEVICE_VENDOR := Embedfire
+  DEVICE_MODEL := Lubancat 5
+  SOC := rk3588
+  BOOT_FLOW := pine64-img
+  DEVICE_PACKAGES := kmod-r8125 kmod-ata-ahci-dwc kmod-hwmon-pwmfan
+endef
+TARGET_DEVICES += embedfire_lubancat-5
+
 define Device/ezpro_mrkaio-m68s
   DEVICE_VENDOR := EZPRO
   DEVICE_MODEL := Mrkaio M68S
@@ -148,7 +157,7 @@ define Device/rumu3f_fine-3399
   DEVICE_MODEL := FINE 3399
   SOC := rk3399
   BOOT_FLOW := pine64-img
-  DEVICE_PACKAGES := kmod-brcmfmac kmod-gpio-button-hotplug kmod-usb-net-rtl8152 wpad	
+  DEVICE_PACKAGES := kmod-gpio-button-hotplug kmod-usb-net-rtl8152 kmod-mmc kmod-usb3
 endef
 TARGET_DEVICES += rumu3f_fine-3399
 
