@@ -24,9 +24,10 @@
 		ethernet1 = &gmac1;
 	};
 
-  	chosen {
+  	chosen: chosen {
 		stdout-path = "serial2:1500000n8";
-      
+	};
+
 	adc_keys: adc-keys {
 		compatible = "adc-keys";
 		io-channels = <&saradc 1>;
@@ -183,6 +184,14 @@
 			50000	4
 		>;
 	};
+};
+
+&i2s5_8ch {
+	status = "okay";
+};
+
+&i2s6_8ch {
+	status = "okay";
 };
 
 &cpu_b0 {
@@ -784,6 +793,11 @@
 	status = "okay";
 };
 
+/* this is a watchdog */
+&wdt {
+	status = "okay";
+};
+
 &gmac0 {
 	/* Use rgmii-rxid mode to disable rx delay inside Soc */
 	phy-mode = "rgmii-rxid";
@@ -1027,6 +1041,10 @@
 };
 
 &usb_host1_ohci {
+	status = "okay";
+};
+
+&i2s7_8ch{
 	status = "okay";
 };
 
