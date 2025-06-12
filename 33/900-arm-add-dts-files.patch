@@ -6,8 +6,8 @@
  
 +dtb-$(CONFIG_ROCKCHIP_RK3399) += \
 +	rk3399-guangmiao-g4c.dtb \
-+	rk3399-nanopi-r4se.dtb\
-+	rk3399-fine-3399.dtb\
++	rk3399-nanopi-r4se.dtb \
++	rk3399-fine-3399.dtb \
 +
 +dtb-$(CONFIG_ROCKCHIP_RK3566) += \
 +	rk3566-nanopi-r3s.dtb \
@@ -20,8 +20,8 @@
 +	rk3568-photonicat.dtb
 +
 +dtb-$(CONFIG_ROCKCHIP_RK3588) += \
-+	rk3588-cyber3588-aib.dtb
-+	rk3588-lubancat-5.dtb
++	rk3588-cyber3588-aib.dtb \
++	rk3588-lubancat-5.dtb \
 +
  dtb-$(CONFIG_ARCH_S5P4418) += \
  	s5p4418-nanopi2.dtb
