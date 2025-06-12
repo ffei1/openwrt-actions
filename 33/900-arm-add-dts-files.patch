@@ -17,7 +17,7 @@
 +	rk3568-mmbox-anas3035.dtb \
 +	rk3568-lyt-t68m.dtb \
 +	rk3568-mrkaio-m68s.dtb \
-+	rk3568-photonicat.dtb
++	rk3568-photonicat.dtb \
 +
 +dtb-$(CONFIG_ROCKCHIP_RK3588) += \
 +	rk3588-cyber3588-aib.dtb \
