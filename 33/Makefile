@@ -333,6 +333,13 @@ define U-Boot/cyber3588-aib-rk3588
     cyber_cyber3588-aib
 endef
 
+define U-Boot/lubancat-5-rk3588
+  $(U-Boot/rk3588/Default)
+  NAME:=Lubancat 5
+  BUILD_DEVICES:= \
+    embedfire_lubancat-5
+endef
+
 define U-Boot/nanopc-t6-rk3588
   $(U-Boot/rk3588/Default)
   NAME:=NanoPC T6
@@ -428,6 +435,7 @@ UBOOT_TARGETS := \
   rock-3b-rk3568 \
   sige3-rk3568 \
   cyber3588-aib-rk3588 \
+  lubancat-5-rk3588 \
   nanopc-t6-rk3588 \
   orangepi-5-plus-rk3588 \
   rock5b-rk3588 \
