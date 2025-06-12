@@ -1,5 +1,5 @@
 
-name: cyber
+name: lubancat5
 
 on:
   workflow_dispatch:
@@ -8,7 +8,8 @@ env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
   REPO_BRANCH: v24.10.0
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: cyber
+  CONFIG_FILE: luban5
+  DIY_P2_SH: diy-part2.sh
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
@@ -55,6 +56,12 @@ jobs:
     - name: Download firmware source code
       run: |
         git clone -b $REPO_BRANCH --single-branch --depth=1 $REPO_URL openwrt
+
+    - name: Load custom configuration
+      run: |
+        chmod +x $DIY_P2_SH
+        cd openwrt
+        $GITHUB_WORKSPACE/$DIY_P2_SH
         
     - name: Load custom feeds
       run: |
@@ -103,7 +110,7 @@ jobs:
       run: |
         echo "release_tag=${{ env.date2 }}" >> $GITHUB_OUTPUT
         touch release.txt
-        echo "fine3399固件192.168.11.1" >> release.txt
+        echo "lubancat-5固件192.168.11.1" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
         
     - name: Publish to release
