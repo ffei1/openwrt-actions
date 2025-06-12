@@ -116,7 +116,6 @@ define U-Boot/rk3399/Default
   DEPENDS:=+PACKAGE_u-boot-$(1):trusted-firmware-a-rk3399
   ATF:=$(RK3399_ATF)
   TPL:=$(RK3399_TPL)
-
 endef
 
 define U-Boot/guangmiao-g4c-rk3399
