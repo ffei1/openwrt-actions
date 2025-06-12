@@ -14,7 +14,7 @@
 #include "rk3588.dtsi"
 
 / {
-	model = "Embedfire LubanCat-5";
+	model = "Embedfire Lubancat-5";
 	compatible = "embedfire,lubancat-5", "rockchip,rk3588";
 
 	aliases {
