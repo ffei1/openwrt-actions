@@ -172,6 +172,18 @@
 	};
 };
 
+&combphy0_ps {
+	status = "okay";
+};
+
+&combphy1_ps {
+	status = "okay";
+};
+
+&combphy2_psu {
+	status = "okay";
+};
+
 &cpu_b0 {
 	cpu-supply = <&vdd_cpu_big0_s0>;
 };
@@ -763,10 +775,6 @@
 	status = "okay";
 };
 
-&combphy1_ps {
-	status = "okay";
-};
-
 &pcie2x1l0 {
 	reset-gpios = <&gpio4 RK_PA5 GPIO_ACTIVE_HIGH>;
 	disable-gpios = <&gpio0 RK_PC6 GPIO_ACTIVE_HIGH>;
@@ -774,10 +782,6 @@
 };
 
 /* SATA30/PCIe20x1_2 Combo PHY */
-&combphy0_ps {
-	status = "okay";
-};
-
 &pcie2x1l2 {
 	reset-gpios = <&gpio3 RK_PD1 GPIO_ACTIVE_HIGH>;
 	disable-gpios = <&gpio3 RK_PC1 GPIO_ACTIVE_HIGH>;
@@ -853,11 +857,6 @@
 };
 
 &u2phy1_otg {
-	status = "okay";
-};
-
-/* USB3.1/SATA/PCIe20x1_1 Combo PHY */
-&combphy2_psu {
 	status = "okay";
 };
 
