@@ -383,7 +383,7 @@
 		compatible = "ethernet-phy-id001c.c916";
 		reg = <0x1>;
 		pinctrl-names = "default";
-		pinctrl-0 = <&rtl8211f_rst_0>;
+		pinctrl-0 = <&rtl8211f_rst_0 >;
 		reset-assert-us = <20000>;
 		reset-deassert-us = <100000>;
 		reset-gpios = <&gpio4 RK_PC6 GPIO_ACTIVE_LOW>;
@@ -464,10 +464,10 @@
 	};
 
 	rtl8211f {
-		rtl8211f_rst_0: rtl8211f-rst {
+		rtl8211f_rst_0: rtl8211f-rst_0 {
 			rockchip,pins = <4 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
 		};
-		rtl8211f_rst_1: rtl8211f-rst {
+		rtl8211f_rst_1: rtl8211f-rst_1 {
 			rockchip,pins = <3 RK_PB7 RK_FUNC_GPIO &pcfg_pull_none>;
 		};
 	};
