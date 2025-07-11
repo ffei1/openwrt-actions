@@ -476,7 +476,6 @@
 			rockchip,pins = <2 RK_PC5 RK_FUNC_GPIO &pcfg_pull_none>;
 		};
 	};
-
 };
 
 &pwm4 {
@@ -943,7 +942,3 @@
 &usb_host1_ohci {
 	status = "okay";
 };
-
-};
-
-
